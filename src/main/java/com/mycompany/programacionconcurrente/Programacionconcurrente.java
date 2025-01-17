@@ -15,10 +15,10 @@ import javax.swing.JFrame;
 
 public class Programacionconcurrente {
     public static void main(String[] args) {
-        Coche c1 = new Coche(10, 100);
-        Coche c2 = new Coche(20, 100);
-        Coche c3 = new Coche(30, 100);
-        Coche c4 = new Coche(40, 100);
+        Coche c1 = new Coche(5, 100);
+        Coche c2 = new Coche(10, 100);
+        Coche c3 = new Coche(16, 100);
+        Coche c4 = new Coche(20, 100);
 
         List<Coche> coches = new LinkedList<>();
         coches.add(c1);

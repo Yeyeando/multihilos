@@ -17,7 +17,13 @@ public class Carrera extends javax.swing.JFrame {
     public Carrera(List<Coche> coches) {
         this.coches = coches;
         initComponents();
-        iniciarCarrera();
+        if (coches.size()<5 && coches.size()>0) {
+            jLabel5.setVisible(false);
+            iniciarCarrera();
+        }
+        else{
+            jLabel5.setText("La carrera tiene que haber de 1 hasta 4 coches");
+        }
     }
 
     private void iniciarCarrera() {
@@ -38,7 +44,7 @@ public class Carrera extends javax.swing.JFrame {
                 coche.avanzar(slider);
                 if (coche.getDistanciaRecorrida() >= 100 && !carreraTerminada.get()) {
                     carreraTerminada.set(true);
-
+                    
                     // Detener todos los coches
                     for (Coche c : coches) {
                         c.detenerCarrera();
@@ -49,10 +55,11 @@ public class Carrera extends javax.swing.JFrame {
                         for (int i = 0; i < coches.size(); i++) {
                             JLabel resultadoLabel = obtenerLabel(i);
                             resultadoLabel.setText("Coche " + (i + 1) + ": " + coches.get(i).getDistanciaRecorrida() + "m");
+                            
                         }
                     });
                 }
-                Thread.sleep(200);
+                Thread.sleep(500);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -91,6 +98,7 @@ public class Carrera extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +118,8 @@ public class Carrera extends javax.swing.JFrame {
 
         jLabel4.setText("Coche4");
 
+        jLabel5.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,13 +137,14 @@ public class Carrera extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jSlider4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -158,7 +169,9 @@ public class Carrera extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSlider4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(jLabel5)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,6 +185,7 @@ public class Carrera extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JSlider jSlider2;
     private javax.swing.JSlider jSlider3;
