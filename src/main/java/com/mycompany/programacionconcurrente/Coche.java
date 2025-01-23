@@ -31,6 +31,10 @@ public class Coche {
         return distanciaRecorrida;
     }
 
+    public int getDistanciaTotal() {
+        return distanciaTotal;
+    }
+    
     public void detenerCarrera() {
         finCarrera = true;
     }

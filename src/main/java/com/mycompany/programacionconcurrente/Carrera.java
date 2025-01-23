@@ -27,7 +27,6 @@ public class Carrera extends javax.swing.JFrame {
     }
 
     private void iniciarCarrera() {
-        // Crear un hilo por cada coche en la lista
         for (int i = 0; i < coches.size(); i++) {
             Coche coche = coches.get(i);
             JSlider slider = obtenerSlider(i);
@@ -42,7 +41,7 @@ public class Carrera extends javax.swing.JFrame {
         try {
             while (!carreraTerminada.get()) {
                 coche.avanzar(slider);
-                if (coche.getDistanciaRecorrida() >= 100 && !carreraTerminada.get()) {
+                if (coche.getDistanciaRecorrida() >= coche.getDistanciaTotal() && !carreraTerminada.get()) {
                     carreraTerminada.set(true);
                     
                     // Detener todos los coches
@@ -54,7 +53,12 @@ public class Carrera extends javax.swing.JFrame {
                     SwingUtilities.invokeLater(() -> {
                         for (int i = 0; i < coches.size(); i++) {
                             JLabel resultadoLabel = obtenerLabel(i);
-                            resultadoLabel.setText("Coche " + (i + 1) + ": " + coches.get(i).getDistanciaRecorrida() + "m");
+                            if (coches.get(i).getDistanciaRecorrida()>=coches.get(i).getDistanciaTotal()) {
+                                resultadoLabel.setText("Coche " + (i + 1) + ": " + coches.get(i).getDistanciaRecorrida() + "m  Ganador");
+                            }
+                            else{
+                                resultadoLabel.setText("Coche " + (i + 1) + ": " + coches.get(i).getDistanciaRecorrida() + "m");
+                            }
                             
                         }
                     });

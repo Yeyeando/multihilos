@@ -11,7 +11,7 @@ package com.mycompany.programacionconcurrente;
 public class Cuenta extends Thread {
     private boolean primero;
     private int meta;
-    // Constructor para inicializar la variable primero
+    
     public Cuenta(boolean primero, int meta) {
         this.primero = primero;
         this.meta = meta;
